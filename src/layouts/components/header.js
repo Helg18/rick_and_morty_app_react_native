@@ -13,6 +13,9 @@ const Header = (props) => {
         <View style={styles.container}>
           <Image source={require('../assets/logo.png')} style={styles.logo}/>
           <Image source={require('../assets/title.png')} style={styles.title}/>
+          <View style={styles.right}>
+            {props.children}
+          </View>
         </View>
       </SafeAreaView>
     </View>
@@ -27,8 +30,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   logo: {
-    // width: 62,
-    height: 62,
+    height: 80,
     resizeMode: 'contain',
     flexGrow: 0,
     flexShrink: 1,
@@ -39,6 +41,12 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     flexGrow: 1,
     flexShrink: 1,
+    flexBasis: 'auto',
+  },
+  right:{
+    width:'10%',
+    flexGrow: 0,
+    flexShrink: 0,
     flexBasis: 'auto',
   }
 });
