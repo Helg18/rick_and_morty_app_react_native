@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const option = (props) => {
+const listOption = (props) => {
   return(
     <View style={styles.container}>
       <Text style={styles.title}>{props.title}</Text>
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default option;
+export default listOption;

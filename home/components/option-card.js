@@ -5,7 +5,7 @@ const optionCard = props => {
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Image style={styles.image} source={require('../assets/characters.png')}/>
+        <Image style={styles.image} source={require('../../src/layouts/assets/characters.png')}/>
       </View>
       <View style={styles.right}>
         <Text style={styles.title}>

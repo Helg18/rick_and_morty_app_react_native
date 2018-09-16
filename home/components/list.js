@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Text, FlatList, StyleSheet } from 'react-native';
-import Layout from './option';
+import Layout from './list-option';
 import Separation from './separator';
 import OptionCard from './option-card';
 

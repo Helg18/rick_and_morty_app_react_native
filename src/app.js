@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-
+ // Services
 import API from './services/api';
-import Home from './screens/containers/home';
-import Header from './layouts/components/header';
-import Footer from './layouts/components/footer';
-import List from  './layouts/components/list';
 
+// Home Layouts
+import Home from '../home/containers/home-layout';
+
+// Character Layouts
+import Characters from '../characters/containers/characters-layout';
 
 
 class MainLayout extends Component {
@@ -16,17 +17,12 @@ class MainLayout extends Component {
       console.log("Api call error");
       alert(error.message);
     });
-    console.log(characters);
   };
 
   render(){
     return(
-        <Home>
-          <Header/>
-          <List/>
-          <Footer/>
-        </Home>
-
+      // <Characters/>
+      <Home/>
       );
   };
 }
