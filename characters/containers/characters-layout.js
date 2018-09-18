@@ -6,19 +6,21 @@ import Footer from "../../src/layouts/components/footer";
 import CharactersLayoutMain from '../../src/screens/containers/characters'
 import CharacterList from '../components/characters-list';
 import API from "../../src/services/api";
+import Store from './../../store';
 
 class CharactersLayout extends Component {
-  state = {
-    charactersList: []
-  };
+  state = { };
 
   async componentDidMount(){
     const characters = await API.getCharacters().catch((error)=>{
       console.log("Api call error");
       alert(error.message);
     });
-    this.setState({
-      charactersList: characters.results
+    Store.dispatch({
+      type: 'SET_CHARACTERS',
+      payload: {
+        characters
+      }
     })
   };
   render(){
@@ -26,7 +28,7 @@ class CharactersLayout extends Component {
       <CharactersLayoutMain>
         <Header/>
         <Text>buscador</Text>
-        <CharacterList list={this.state.charactersList}/>
+        <CharacterList/>
         <Footer/>
       </CharactersLayoutMain>
     );

@@ -1,35 +1,57 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Store from '../../../store';
 import {
   View,
-  Text,
   Image,
   StyleSheet,
-  SafeAreaView, } from 'react-native';
+  SafeAreaView,
+  TouchableOpacity } from 'react-native';
 
-const Header = (props) => {
-  return (
-    <View>
-      <SafeAreaView>
-        <View style={styles.container}>
-          <Image source={require('../assets/logo.png')} style={styles.logo}/>
-          <Image source={require('../assets/title.png')} style={styles.title}/>
-          <View style={styles.right}>
-            {props.children}
+
+class Header extends Component {
+  goHome(){
+    let title = 'Home';
+    Store.dispatch({
+      type: 'SET_SELECTED_OPTION',
+      payload: {
+        title
+      }
+    });
+  }
+  render(){
+    return (
+      <View>
+        <SafeAreaView>
+          <View style={styles.container}>
+            <TouchableOpacity  style={styles.logobox} onPress={this.goHome.bind(this)}>
+              <Image source={require('../assets/logo.png')} style={styles.logo}/>
+            </TouchableOpacity>
+            <Image source={require('../assets/title.png')} style={styles.title}/>
+            <View style={styles.right}>
+              {this.props.children}
+            </View>
           </View>
-        </View>
-      </SafeAreaView>
-    </View>
-  );
-};
+        </SafeAreaView>
+      </View>
+    );
+  }
+}
+
 
 const styles = StyleSheet.create({
   container:{
     paddingVertical: 10,
     paddingHorizontal: 10,
     backgroundColor: '#222831',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  logobox: {
+    width: 80,
   },
   logo: {
+    width: 80,
     height: 80,
     resizeMode: 'contain',
     flexGrow: 0,
@@ -52,4 +74,4 @@ const styles = StyleSheet.create({
 });
 
 
-export default Header;
+export default connect()(Header);

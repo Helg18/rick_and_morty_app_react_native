@@ -2,8 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 
 const optionCard = props => {
-  props = props.item
-  console.log(props)
+  props = props.item;
   return (
     <View style={styles.container}>
       <View>

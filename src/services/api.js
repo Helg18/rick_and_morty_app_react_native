@@ -16,8 +16,24 @@ class Api {
         console.log('There has been a problem with your fetch operation: ' + error.message);
         // ADD THIS THROW error
         throw error;
-      });;
+      });
   }
+
+  async getNextPage(url) {
+    return await fetch(url)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        return data;
+      })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        // ADD THIS THROW error
+        throw error;
+      });
+  }
+
   async getLocations() {
     return await fetch(`${BASE_API}${LOCATION}`)
       .then(function(response) {
@@ -27,6 +43,7 @@ class Api {
         return data;
       });
   }
+
   async getEpisodes() {
     return await fetch(`${BASE_API}${EPISODE}`)
       .then(function(response) {

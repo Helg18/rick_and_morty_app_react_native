@@ -1,23 +1,40 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, { Component } from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import Store from '../../store';
+import { connect } from 'react-redux';
 
-const optionCard = props => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.left}>
-        <Image style={styles.image} source={require('../../src/layouts/assets/characters.png')}/>
-      </View>
-      <View style={styles.right}>
-        <Text style={styles.title}>
-          {props.title}
-        </Text>
-        <Text style={styles.description}>
-          See all {props.title}
-        </Text>
-      </View>
-    </View>
-  );
-};
+
+class OptionCard extends Component {
+  viewOption(){
+    title = this.props.title;
+    Store.dispatch({
+      type: 'SET_SELECTED_OPTION',
+      payload: {
+        title
+      }
+    });
+  };
+  render(){
+    return(
+      <TouchableOpacity onPress={this.viewOption.bind(this)}>
+        <View style={styles.container}>
+          <View style={styles.left}>
+            <Image style={styles.image} source={require('../../src/layouts/assets/characters.png')}/>
+          </View>
+          <View style={styles.right}>
+            <Text style={styles.title}>
+              {this.props.title}
+            </Text>
+            <Text style={styles.description}>
+              See all {this.props.title}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
+
 
 const styles = StyleSheet.create({
   container: {
@@ -43,4 +60,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default optionCard;
+export default connect()(OptionCard);
