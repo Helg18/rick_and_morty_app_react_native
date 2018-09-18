@@ -3,6 +3,9 @@ function characters(state={}, action) {
     case 'SET_CHARACTERS': {
       return { ...state, ...action.payload }
     }
+    case 'SET_LOCATIONS': {
+      return { ...state, ...action.payload }
+    }
     case 'SET_SELECTED_OPTION': {
       return { ...state, ...action.payload}
     }
