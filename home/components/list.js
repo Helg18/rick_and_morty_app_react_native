@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Text, FlatList, StyleSheet } from 'react-native';
+import {Text, FlatList } from 'react-native';
 import Layout from './list-option';
 import Separation from './separator';
 import OptionCard from './option-card';
@@ -7,19 +7,17 @@ import OptionCard from './option-card';
 class List extends Component {
   separation = () => <Separation />;
   renderItem = ({item}) => <OptionCard {...item}/>;
+  setKeys = (item) => item.key;
   render(){
     const list = [
       {
         title: 'Characters',
-        image: '../assets/characters.png',
         key: '1'
       },{
         title: 'Locations',
-        image: '../assets/episodes.png',
         key: '2'
       },{
         title: 'Episodes',
-        image: '../assets/locations.png',
         key: '3'
       }
     ];
@@ -32,6 +30,8 @@ class List extends Component {
           }
           ItemSeparatorComponent={ this.separation }
           renderItem={ this.renderItem }
+          keyExtractor={ this.setKeys }
+          windowSize={20}
         />
       </Layout>
       )

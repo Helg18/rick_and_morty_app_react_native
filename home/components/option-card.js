@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import Store from '../../store';
 import { connect } from 'react-redux';
+import GetImage from './get-image';
 
 
 class OptionCard extends Component {
   viewOption(){
-    title = this.props.title;
+    let title = this.props.title;
     Store.dispatch({
       type: 'SET_SELECTED_OPTION',
       payload: {
@@ -19,7 +20,7 @@ class OptionCard extends Component {
       <TouchableOpacity onPress={this.viewOption.bind(this)}>
         <View style={styles.container}>
           <View style={styles.left}>
-            <Image style={styles.image} source={require('../../src/layouts/assets/characters.png')}/>
+            <Image style={styles.image} source={GetImage[this.props.title]}/>
           </View>
           <View style={styles.right}>
             <Text style={styles.title}>
@@ -41,6 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   image:{
+    width: 150,
     height: 150,
     resizeMode: 'contain'
   },
