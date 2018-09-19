@@ -10,6 +10,9 @@ import Characters from '../characters/containers/characters-layout';
 // Locations Layouts
 import Locations from '../locations/containers/locations-layout';
 
+// Episodes
+import Episodes from '../episodes/containers/episodes-layout';
+
 class MainLayout extends Component {
 
   render(){
@@ -22,6 +25,9 @@ class MainLayout extends Component {
       }
       case 'Locations':{
         return( <Locations /> )
+      }
+      case 'Episodes':{
+        return( <Episodes /> )
       }
       default:
         return( <Home/> )

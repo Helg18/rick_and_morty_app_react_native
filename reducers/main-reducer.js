@@ -1,9 +1,12 @@
-function characters(state={}, action) {
+function mainReducer(state={}, action) {
   switch (action.type) {
     case 'SET_CHARACTERS': {
       return { ...state, ...action.payload }
     }
     case 'SET_LOCATIONS': {
+      return { ...state, ...action.payload }
+    }
+    case 'SET_EPISODES': {
       return { ...state, ...action.payload }
     }
     case 'SET_SELECTED_OPTION': {
@@ -14,4 +17,4 @@ function characters(state={}, action) {
   }
 }
 
-export default characters;
+export default mainReducer;
