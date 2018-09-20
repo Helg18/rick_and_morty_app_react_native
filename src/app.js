@@ -7,6 +7,9 @@ import Home from '../home/containers/home-layout';
 // Character Layouts
 import Characters from '../characters/containers/characters-layout';
 
+// Characte Layouts
+import Character from '../characters/containers/character-layout';
+
 // Locations Layouts
 import Locations from '../locations/containers/locations-layout';
 
@@ -22,6 +25,9 @@ class MainLayout extends Component {
       }
       case 'Characters':{
         return( <Characters/> )
+      }
+      case 'Character':{
+        return( <Character/> )
       }
       case 'Locations':{
         return( <Locations /> )

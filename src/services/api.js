@@ -4,6 +4,21 @@ const LOCATION = "location/";
 const EPISODE = "episode/";
 
 class Api {
+  async getCharacter() {
+    return await fetch(`${BASE_API}${CHARACTER}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        return data;
+      })
+      .catch(function(error) {
+        console.log('There has been a problem with your fetch operation: ' + error.message);
+        // ADD THIS THROW error
+        throw error;
+      });
+  }
+
   async getCharacters() {
     return await fetch(`${BASE_API}${CHARACTER}`)
       .then(function(response) {

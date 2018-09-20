@@ -3,6 +3,9 @@ function mainReducer(state={}, action) {
     case 'SET_CHARACTERS': {
       return { ...state, ...action.payload }
     }
+    case 'SET_CHARACTER': {
+      return { ...state, ...action.payload }
+    }
     case 'SET_LOCATIONS': {
       return { ...state, ...action.payload }
     }

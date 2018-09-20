@@ -1,24 +1,50 @@
-import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import React, { Component } from 'react';
+import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import API from "../../src/services/api";
+import Store from "../../store";
+import {connect} from 'react-redux';
 
-const optionCard = props => {
-  props = props.item;
-  return (
-    <View style={styles.container}>
-      <View>
-        <Image
-          style={styles.image}
-          source={{uri: props.image}}
-        />
-      </View>
-      <View style={styles.right}>
-        <Text style={styles.title}>
-          {props.name}
-        </Text>
-      </View>
-    </View>
-  );
-};
+class OptionCard extends Component{
+  state = { };
+
+  async view(){
+    const character = await API.getNextPage(this.props.item.url).catch((error)=>{
+      console.log("Api call error");
+      alert(error.message);
+    });
+    Store.dispatch({
+      type: 'SET_CHARACTER',
+      payload: {
+        character
+      }
+    });
+    Store.dispatch({
+      type: 'SET_SELECTED_OPTION',
+      payload: {
+        title: 'Character'
+      }
+    });
+  }
+  render(){
+    return (
+      <TouchableOpacity style={styles.container} onPress={this.view.bind(this)}>
+        <View style={styles.container}>
+          <View>
+            <Image
+              style={styles.image}
+              source={{uri: this.props.item.image}}
+            />
+          </View>
+          <View style={styles.right}>
+            <Text style={styles.title}>
+              {this.props.item.name}
+            </Text>
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -42,4 +68,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default optionCard;
+export default connect()(OptionCard);

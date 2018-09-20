@@ -5,7 +5,8 @@ const store = createStore(reducer, {
   title: '',
   characters: [],
   locations: [],
-  episodes: []
+  episodes: [],
+  character: [],
 });
 
 export default store;

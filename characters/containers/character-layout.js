@@ -1,36 +1,65 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native';
+import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {connect} from 'react-redux';
 
 import Header from "../../src/layouts/components/header";
 import Footer from "../../src/layouts/components/footer";
 import CharacterLayoutMain from '../../src/screens/containers/character'
-import API from "../../src/services/api";
 
 class CharacterLayout extends Component {
-  state = {
-    character: []
-  };
 
-  async componentDidMount(){
-    const character = await API.getCharacter().catch((error)=>{
-      console.log("Api call error");
-      alert(error.message);
-    });
-    this.setState({
-      character: character.results
-    })
-  };
   render(){
-    console.log(this.props)
     return (
       <CharacterLayoutMain>
         <Header/>
-        <Text>el cuerpo de mi character</Text>
-        {/*<CharacterList list={this.state.charactersList}/>*/}
+        <ScrollView style={styles.container}>
+          <View style={styles.container}>
+            <Text style={styles.title}>
+              {this.props.info.name}
+            </Text>
+            <View style={styles.imageBox}>
+              <Image style={styles.image} source={{uri: this.props.info.image}}/>
+            </View>
+            <Text style={styles.texto}>
+              {this.props.info.name} is a {this.props.info.species}, is {this.props.info.status}, and was born on {this.props.info.location.name}
+            </Text>
+          </View>
+        </ScrollView>
         <Footer/>
       </CharacterLayoutMain>
     );
   }
 }
 
-export default CharacterLayout;
+const styles = StyleSheet.create({
+  imageBox: {
+    backgroundColor: '#393e46',
+  },
+  image: {
+    width: '100%',
+    height: 400,
+    resizeMode: 'contain'
+  },
+  container: {
+    flexGrow: 1,
+    backgroundColor: '#393e46'
+  },
+  title: {
+    fontSize: 36,
+    color: '#00adb5',
+    paddingHorizontal: 15,
+  },
+  texto: {
+    fontSize: 28,
+    color: 'white',
+    paddingHorizontal: 15,
+  }
+});
+
+const mapStateToProps = (state) => {
+  return {
+    info: state.character
+  }
+};
+
+export default connect(mapStateToProps)(CharacterLayout);
