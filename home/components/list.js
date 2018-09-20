@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Text, FlatList } from 'react-native';
 import Layout from './list-option';
-import Separation from './separator';
+import Separation from '../../src/layouts/components/separator';
 import OptionCard from './option-card';
 
 class List extends Component {

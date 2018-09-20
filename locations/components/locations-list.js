@@ -6,6 +6,7 @@ import OptionCard from './option-card';
 import Layout from './list-option';
 import API from '../../src/services/api';
 import Store from "../../store";
+import Separation from "../../src/layouts/components/separator";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => {
 class LocationsList extends Component {
   keyExtractor = (item) => item.id.toString();
   renderItem = (item) => <OptionCard {...item} />;
+  separation = () => <Separation />;
   async previousPage(){
     if (this.props.info.prev){
       const locations = await API.getNextPage(this.props.info.prev).catch((error)=>{
@@ -54,6 +56,7 @@ class LocationsList extends Component {
               () => <Text>Try again later :(</Text>
             }
             renderItem={ this.renderItem }
+            ItemSeparatorComponent={ this.separation }
             keyExtractor={ this.keyExtractor }
           />
           <View style={styles.containerSelector}>

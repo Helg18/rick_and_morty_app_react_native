@@ -6,6 +6,7 @@ import OptionCard from './option-card';
 import Layout from './list-option';
 import API from '../../src/services/api';
 import Store from "../../store";
+import Separation from "../../src/layouts/components/separator";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,6 +18,7 @@ const mapStateToProps = (state) => {
 class EpisodesList extends Component {
   keyExtractor = (item) => item.id.toString();
   renderItem = (item) => <OptionCard {...item} />;
+  separation = () => <Separation />;
   async previousPage(){
     if (this.props.info.prev){
       const episodes = await API.getNextPage(this.props.info.prev).catch((error)=>{
@@ -55,6 +57,7 @@ class EpisodesList extends Component {
             }
             renderItem={ this.renderItem }
             keyExtractor={ this.keyExtractor }
+            ItemSeparatorComponent={ this.separation }
           />
           <View style={styles.containerSelector}>
             <TouchableOpacity onPress={this.previousPage.bind(this)}>
